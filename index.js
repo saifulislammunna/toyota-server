@@ -29,13 +29,25 @@ async function run(){
 
 
         const productCollection = database.collection('products');
-
+        const orderCollection  = database.collection('orders');
 
          // GET services API 
          app.get('/products', async(req, res) => {
             const cursor = productCollection.find({});
             const products = await cursor.toArray();
             res.send(products);
+
+
+
+
+         // Add Orders API 
+         app.post('/orders', async(req,res) => {
+            const order = req.body;
+            console.log(order);
+            const result = await orderCollection.insertOne(order);
+            res.send('Order processed');
+        })
+
         });
     }
     finally{
