@@ -1,5 +1,6 @@
 const express = require('express')
 const { MongoClient } = require('mongodb');
+ 
 require('dotenv').config()
 
 
@@ -37,7 +38,19 @@ async function run(){
             const products = await cursor.toArray();
             res.send(products);
 
+     
 
+
+
+          
+         // Use POST to get data by _ids
+         app.post('/products/byids', async (req, res) => {
+            console.log(req.body);
+         const _ids = req.body;
+         const query = { _id: { $in: _ids} }
+         const products = await productCollection.find(query).toArray();
+         res.json(products);
+     });  
 
 
          // Add Orders API 
