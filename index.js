@@ -50,7 +50,22 @@ async function run(){
             res.send(orders);
 
         });
-
+      
+        // admin getting
+        app.get('/users/:email', async(req,res) =>{
+            const email = req.params.email;
+            const query = {email: email};
+            const user = await usersCollection.findOne(query);
+            let isAdmin = false;
+            if(user?.role === 'admin'){
+                   isAdmin = true;
+                   
+            }
+            res.send({admin:  isAdmin});
+    
+   
+         })
+   
 
 
           
@@ -80,7 +95,18 @@ async function run(){
             res.send(result)
     
           });
-
+        
+    //    admin add to databse
+    app.put('/users/admin',  async(req,res) =>{
+        const user = req.body;
+         console.log('put', user);
+         
+            const filter = {email: user.email};
+            const updateDoc = {$set: {role: 'admin'}};
+            const result = await usersCollection.updateOne(filter,updateDoc);
+            res.send(result);
+       
+      })
 
       
     }
