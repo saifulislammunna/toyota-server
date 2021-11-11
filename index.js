@@ -32,12 +32,20 @@ async function run(){
         const productCollection = database.collection('products');
         const orderCollection  = database.collection('orders');
         const usersCollection = database.collection('users');
+        const reviewsCollection = database.collection('reviews');
 
          // GET products API 
          app.get('/products', async(req, res) => {
             const cursor = productCollection.find({});
             const products = await cursor.toArray();
             res.send(products);
+
+        });
+         // GET reviews API 
+         app.get('/reviews', async(req, res) => {
+            const cursor = reviewsCollection.find({});
+            const reviews = await cursor.toArray();
+            res.send(reviews);
 
         });
         // Get orders API
@@ -116,6 +124,16 @@ async function run(){
         console.log('hit the post api',product);
         
         const result = await productCollection.insertOne(product);
+         console.log(result);
+       res.send(result);
+      });  
+
+      
+        //insert a product POST API
+    app.post('/reviews', async(req, res) => {
+        const review = req.body;
+        console.log('hit the post api', review);
+        const result = await reviewsCollection.insertOne(review);
          console.log(result);
        res.send(result);
       });  
