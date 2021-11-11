@@ -107,14 +107,13 @@ async function run(){
             res.send(result);
        
       });
-
-    //   POST API
+ 
     
-    //   // POST API
+        //insert a product POST API
     app.post('/products', async(req, res) => {
 
         const product = req.body;
-        console.log('hit the post api',service);
+        console.log('hit the post api',product);
         
         const result = await productCollection.insertOne(product);
          console.log(result);
