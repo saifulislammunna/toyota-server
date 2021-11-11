@@ -1,6 +1,6 @@
 const express = require('express')
 const { MongoClient } = require('mongodb');
- 
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
 
 
@@ -73,20 +73,7 @@ async function run(){
     
    
          })
-   
-
-
-          
-         // Use POST to get data by _ids
-       /*   app.post('/products/byids', async (req, res) => {
-            console.log(req.body);
-         const _ids = req.body;
-         const query = { _id: { $in: _ids} }
-         const products = await productCollection.find(query).toArray();
-         res.json(products);
-     }); */  
-
-
+ 
          // Add Orders API 
          app.post('/orders', async(req,res) => {
             const order = req.body;
@@ -137,7 +124,16 @@ async function run(){
          console.log(result);
        res.send(result);
       });  
+  
 
+       // DELETE API
+       app.delete('/orders/:_id', async(req,res) =>{
+        const id = req.params._id;
+        const query = {_id:ObjectId(id)};
+        const result = await orderCollection.deleteOne(query);
+        res.json(result);
+
+      })
       
     }
     finally{
