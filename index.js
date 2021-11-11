@@ -106,7 +106,20 @@ async function run(){
             const result = await usersCollection.updateOne(filter,updateDoc);
             res.send(result);
        
-      })
+      });
+
+    //   POST API
+    
+    //   // POST API
+    app.post('/products', async(req, res) => {
+
+        const product = req.body;
+        console.log('hit the post api',service);
+        
+        const result = await productCollection.insertOne(product);
+         console.log(result);
+       res.send(result);
+      });  
 
       
     }
