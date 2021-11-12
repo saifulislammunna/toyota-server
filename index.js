@@ -83,15 +83,16 @@ async function run(){
          app.post('/orders', async(req,res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
+            const result = await manageAllOrdersCollection.insertOne(order);
             console.log(result);
-            res.send('Order processed');
+            res.send(result);
         });
         
         // Add Users API 
         app.post('/users', async(req,res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
-            const result = await manageAllOrdersCollection.insertOne(user);
+           
             console.log(result);
             res.send(result)
     
