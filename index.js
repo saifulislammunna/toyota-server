@@ -33,7 +33,7 @@ async function run(){
         const orderCollection  = database.collection('orders');
         const usersCollection = database.collection('users');
         const reviewsCollection = database.collection('reviews');
-        
+        const manageAllOrdersCollection = database.collection('manageAllOrders');
 
        
          // GET products API 
@@ -61,16 +61,7 @@ async function run(){
           res.send(orders);
 
       });
-          // GET orders API 
-     /*      app.get('/orders', async(req, res) => {
-            const id = req.query._id
-            const query = {_id:id}
-            const cursor = orderCollection.find({});
-            const orders = await cursor.toArray();
-            console.log(orders);
-            res.send(orders);
-
-        }); */  
+       
       
       
         // admin getting
@@ -100,6 +91,7 @@ async function run(){
         app.post('/users', async(req,res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
+            const result = await manageAllOrdersCollection.insertOne(user);
             console.log(result);
             res.send(result)
     
@@ -156,6 +148,14 @@ async function run(){
         res.json(result);
 
       })
+
+        // GET reviews API 
+     /*    app.get('/orders', async(req, res) => {
+          const cursor = orderCollection.find({});
+          const orders = await cursor.toArray();
+          res.send(orders);
+
+      }); */
       
     }
     finally{
