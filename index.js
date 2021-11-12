@@ -33,7 +33,15 @@ async function run(){
         const orderCollection  = database.collection('orders');
         const usersCollection = database.collection('users');
         const reviewsCollection = database.collection('reviews');
+        
 
+          // GET orders API 
+          app.get('/orders', async(req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+
+        });
          // GET products API 
          app.get('/products', async(req, res) => {
             const cursor = productCollection.find({});
@@ -49,7 +57,7 @@ async function run(){
 
         });
 
-          // Get orders API
+          // Get orders by email API
           app.get('/orders', async(req, res) => {
             const email = req.query.email;
            const query = {email : email};
@@ -59,13 +67,7 @@ async function run(){
           res.send(orders);
 
       });
-         // GET orders API 
-         app.get('/orders', async(req, res) => {
-            const cursor = orderCollection.find({});
-            const orders = await cursor.toArray();
-            res.send(orders);
-
-        });
+       
       
       
         // admin getting
