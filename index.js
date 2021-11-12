@@ -36,12 +36,12 @@ async function run(){
         
 
           // GET orders API 
-          app.get('/orders', async(req, res) => {
+        /*   app.get('/orders', async(req, res) => {
             const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
             res.send(orders);
 
-        });
+        }); */
          // GET products API 
          app.get('/products', async(req, res) => {
             const cursor = productCollection.find({});
