@@ -48,6 +48,13 @@ async function run(){
             res.send(reviews);
 
         });
+         // GET orders API 
+         app.get('/orders', async(req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+
+        });
         // Get orders API
          app.get('/orders', async(req, res) => {
               const email = req.query.email;
