@@ -90,7 +90,7 @@ async function run(){
             const order = req.body;
             const result = await orderCollection.insertOne(order);
             console.log(result);
-            res.send('Order processed');
+            res.send(result);
         });
         
         // Add Users API 
