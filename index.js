@@ -48,6 +48,17 @@ async function run(){
             res.send(reviews);
 
         });
+
+          // Get orders API
+          app.get('/orders', async(req, res) => {
+            const email = req.query.email;
+           const query = {email : email};
+           console.log(query)  
+          const cursor = orderCollection.find(query);
+          const orders = await cursor.toArray();
+          res.send(orders);
+
+      });
          // GET orders API 
          app.get('/orders', async(req, res) => {
             const cursor = orderCollection.find({});
@@ -55,16 +66,7 @@ async function run(){
             res.send(orders);
 
         });
-        // Get orders API
-         app.get('/orders', async(req, res) => {
-              const email = req.query.email;
-             const query = {email : email};
-             console.log(query)  
-            const cursor = orderCollection.find(query);
-            const orders = await cursor.toArray();
-            res.send(orders);
-
-        });
+      
       
         // admin getting
         app.get('/users/:email', async(req,res) =>{
