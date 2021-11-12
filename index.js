@@ -141,6 +141,14 @@ async function run(){
         res.json(result);
 
       })
+       // DELETE API
+       app.delete('/products/:_id', async(req,res) =>{
+        const id = req.params._id;
+        const query = {_id:ObjectId(id)};
+        const result = await  productCollection.deleteOne(query);
+        res.json(result);
+
+      })
       
     }
     finally{
