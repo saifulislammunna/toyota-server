@@ -62,14 +62,12 @@ async function run(){
 
       });
           // GET orders API 
-     /*      app.get('/orders', async(req, res) => {
-            const id = req.query._id
-            const query = {_id:id}
+        app.get('/order', async(req, res) => {
             const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
             console.log(orders);
             res.send(orders);
-        }); */  
+        });  
       
       
         // admin getting
