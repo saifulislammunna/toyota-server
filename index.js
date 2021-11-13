@@ -127,7 +127,7 @@ async function run(){
       });  
 
       
-        //insert a product POST API
+        //insert a review POST API
     app.post('/reviews', async(req, res) => {
         const review = req.body;
         console.log('hit the post api', review);
@@ -137,7 +137,7 @@ async function run(){
       });  
   
 
-       // DELETE API
+       // DELETE specific order API
        app.delete('/orders/:_id', async(req,res) =>{
         const id = req.params._id;
         const query = {_id:ObjectId(id)};
@@ -145,7 +145,7 @@ async function run(){
         res.json(result);
 
       })
-       // DELETE API
+       // DELETE specific product API
        app.delete('/products/:_id', async(req,res) =>{
         const id = req.params._id;
         const query = {_id:ObjectId(id)};
